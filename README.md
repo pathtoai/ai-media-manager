@@ -1,4 +1,4 @@
-# Pics Manager
+# AI Media Manager
 
 A local web app that analyzes and tags a folder of photos and videos (your Downloads by default), lets you fix tags by hand, and sorts files into category or tag folders — with undo.
 
@@ -7,7 +7,7 @@ A local web app that analyzes and tags a folder of photos and videos (your Downl
 ```bash
 python3 -m venv .venv          # or: uv venv .venv
 .venv/bin/pip install -r requirements.txt
-.venv/bin/python -m picsmanager
+.venv/bin/python -m mediamanager
 ```
 
 Put your Claude key in `.env` in the project folder (`ANTHROPIC_API_KEY=sk-ant-...`). It is git-ignored.

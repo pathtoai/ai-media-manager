@@ -8,7 +8,7 @@ from .app import app, cfg
 
 def main() -> None:
     sys.stdout.reconfigure(line_buffering=True)
-    print(f"Pics Manager → http://localhost:{cfg.port}")
+    print(f"AI Media Manager → http://localhost:{cfg.port}")
     print(f"Folder: {cfg.sort_dir}")
     for m in cfg.models.values():
         ok, note = get_analyzer(m.id, cfg).status()

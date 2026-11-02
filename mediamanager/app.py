@@ -1,4 +1,4 @@
-"""Pics Manager server: scans a folder of photos/videos, analyzes and tags them
+"""AI Media Manager server: scans a folder of photos/videos, analyzes and tags them
 with the model picked in config.toml / the UI, lets you fix tags by hand, and
 moves files into category or tag folders (with undo)."""
 
@@ -27,7 +27,7 @@ from .store import AnalysisStore
 cfg = load()
 store = AnalysisStore(media.CACHE / "analyses.json")
 projects = ProjectStore(media.CACHE / "projects.json")
-app = FastAPI(title="Pics Manager")
+app = FastAPI(title="AI Media Manager")
 
 ID_RE = re.compile(r"^[a-f0-9]{40}$")
 

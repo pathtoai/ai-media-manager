@@ -1,4 +1,4 @@
-# Pics Manager settings. Restart the server after editing.
+# AI Media Manager settings. Restart the server after editing.
 # Environment variables PORT, SORT_DIR and PICS_MODEL override the [app] values.
 
 [app]
