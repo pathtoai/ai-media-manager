@@ -1,0 +1,7 @@
+anthropic>=1.0
+ollama>=0.4
+fastapi>=0.115
+uvicorn>=0.32
+pillow>=11.0
+pydantic>=2.10
+python-dotenv>=1.0

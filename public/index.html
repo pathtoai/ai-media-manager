@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pics Manager — Sorter</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="glow glow-a"></div>
+  <div class="glow glow-b"></div>
+
+  <main class="app">
+    <header class="top">
+      <div class="title-block">
+        <div class="brand">
+          <div class="avatar">PM</div>
+          <span class="brand-name">Pics Manager</span>
+          <span class="brand-sub">· Sorting</span>
+        </div>
+        <h1>Sorting my <em id="dirName">Downloads</em> folder</h1>
+        <label class="dir-pill" title="Folder to sort — press Enter to scan">
+          <svg viewBox="0 0 24 24" width="14" height="14"><path d="M3 6.5A1.5 1.5 0 0 1 4.5 5H9l2 2h8.5A1.5 1.5 0 0 1 21 8.5v9a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 17.5z" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+          <input id="dirInput" spellcheck="false" />
+        </label>
+        <button class="btn ghost pick-btn" id="pickDirBtn" title="Choose a folder with the macOS folder picker">Choose folder…</button>
+      </div>
+      <div class="actions">
+        <div class="status" id="status"><span class="spinner"></span><span id="statusText">Starting…</span></div>
+        <select class="model-select" id="modelSelect" title="Model used to analyze images (see config.toml)"></select>
+        <a class="btn ghost" href="tags.html">Tags</a>
+        <button class="btn ghost hidden" id="undoBtn">Undo move</button>
+        <button class="btn primary" id="sortBtn" disabled><span class="dot"></span><span id="sortLabel">Sort</span></button>
+      </div>
+    </header>
+
+    <section class="projects-wrap">
+      <h2 class="projects-title"><span class="bullet"></span>Projects</h2>
+      <div class="projects" id="projects"></div>
+    </section>
+
+    <section class="stats">
+      <div class="stat"><div class="stat-label">Total files</div><div class="stat-value" id="sTotal">–</div></div>
+      <div class="stat"><div class="stat-label"><span class="bullet"></span>Videos</div><div class="stat-value" id="sVideos">–</div></div>
+      <div class="stat"><div class="stat-label"><span class="bullet"></span>Photos</div><div class="stat-value" id="sPhotos">–</div></div>
+      <div class="stat"><div class="stat-label">Folders created</div><div class="stat-value" id="sFolders">0</div></div>
+      <div class="stat"><div class="stat-label">Duplicates found</div><div class="stat-value" id="sDupes">–</div></div>
+    </section>
+
+    <section class="board">
+      <div class="column">
+        <h2><span class="bullet"></span>Photos</h2>
+        <div class="cards" id="photoCards"></div>
+      </div>
+
+      <div class="center">
+        <div class="blob" id="blob"></div>
+        <div class="blob-caption" id="blobCaption">a small mess</div>
+        <div class="card dup-card" id="dupCard">
+          <div class="card-head"><span class="folder-ic"></span><span class="card-name">Duplicates</span><span class="card-play" title="Slideshow">▶</span><span class="card-count">0</span></div>
+          <div class="thumbs"></div>
+        </div>
+      </div>
+
+      <div class="column">
+        <h2><span class="bullet"></span>Videos</h2>
+        <div class="cards" id="videoCards"></div>
+      </div>
+    </section>
+
+    <p class="footnote" id="footnote"></p>
+  </main>
+
+  <div class="flight-layer" id="flightLayer"></div>
+
+  <dialog id="confirmDlg">
+    <form method="dialog">
+      <h3>Move files into folders?</h3>
+      <p id="confirmText"></p>
+      <div class="dlg-actions">
+        <button class="btn ghost" value="cancel">Cancel</button>
+        <button class="btn primary" value="ok">Move files</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="app.js" type="module"></script>
+</body>
+</html>

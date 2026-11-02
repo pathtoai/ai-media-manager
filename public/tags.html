@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pics Manager — Tags</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="tags.css" />
+</head>
+<body>
+  <div class="glow glow-a"></div>
+  <div class="glow glow-b"></div>
+
+  <main class="app">
+    <header class="top">
+      <div class="title-block">
+        <div class="brand">
+          <div class="avatar">PM</div>
+          <span class="brand-name">Pics Manager</span>
+          <span class="brand-sub">· Tags</span>
+        </div>
+        <h1>Tags in <em id="dirName">Downloads</em></h1>
+        <label class="dir-pill" title="Folder — press Enter to scan">
+          <svg viewBox="0 0 24 24" width="14" height="14"><path d="M3 6.5A1.5 1.5 0 0 1 4.5 5H9l2 2h8.5A1.5 1.5 0 0 1 21 8.5v9a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 17.5z" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+          <input id="dirInput" spellcheck="false" />
+        </label>
+        <button class="btn ghost pick-btn" id="pickDirBtn" title="Choose a folder with the macOS folder picker">Choose folder…</button>
+        <select class="model-select project-select" id="projectSelect" title="Switch project — each project has its own tags"></select>
+      </div>
+      <div class="actions">
+        <div class="status" id="status"><span class="spinner"></span><span id="statusText">Starting…</span></div>
+        <select class="model-select" id="modelSelect" title="Model used to analyze images (see config.toml)"></select>
+        <a class="btn ghost" href="index.html">Sort</a>
+        <button class="btn ghost" id="retagBtn" title="Analyze every file again with the selected model. Your manual tag edits are kept.">Re-analyze all</button>
+        <button class="btn primary" id="tagBtn" disabled><span class="dot"></span><span>Tag photos</span></button>
+      </div>
+    </header>
+
+    <section class="tag-layout">
+      <aside class="tag-side">
+        <input class="tag-search" id="tagSearch" placeholder="Filter tags…" spellcheck="false" />
+        <div class="side-views" id="sideViews"></div>
+        <div class="side-head">
+          <span>Tags</span>
+          <span class="side-hint">tick = make a folder</span>
+        </div>
+        <div class="tag-list" id="tagList"></div>
+        <div class="side-foot">
+          <div class="pick-row">
+            <span>Tick tags with ≥</span>
+            <input type="number" id="minCount" min="1" value="5" />
+            <span>files</span>
+            <button class="link-btn" id="pickBtn">Tick</button>
+            <button class="link-btn" id="clearBtn">Clear</button>
+          </div>
+          <button class="btn primary wide" id="moveBtn" disabled><span class="dot"></span><span id="moveLabel">Move into tag folders</span></button>
+          <button class="btn ghost wide hidden" id="undoBtn">Undo move</button>
+        </div>
+      </aside>
+
+      <section class="tag-main">
+        <div class="main-head">
+          <h2 id="viewTitle">All files</h2>
+          <span class="view-sub" id="viewSub"></span>
+          <button class="btn ghost play-btn" id="slideshowBtn" title="View these photos as a slideshow (← / → to move)">▶ Slideshow</button>
+        </div>
+        <div class="grid" id="grid"></div>
+        <p class="empty-note hidden" id="emptyNote"></p>
+      </section>
+    </section>
+
+    <p class="footnote" id="footnote"></p>
+  </main>
+
+  <dialog id="editDlg" class="edit-dlg">
+    <div class="edit-body">
+      <div class="edit-preview"><img id="editImg" alt="" /></div>
+      <div class="edit-info">
+        <h3 id="editName"></h3>
+        <p class="edit-desc" id="editDesc"></p>
+        <label class="field">
+          <span>Category</span>
+          <select id="editCategory"></select>
+        </label>
+        <div class="field">
+          <span>Tags <small>(click × to remove)</small></span>
+          <div class="chips big" id="editTags"></div>
+          <input id="addTag" placeholder="Add a tag and press Enter (comma for several)" spellcheck="false" />
+        </div>
+        <p class="edit-meta" id="editMeta"></p>
+        <div class="dlg-actions">
+          <button class="btn ghost" id="prevBtn" title="Previous (←)">←</button>
+          <button class="btn ghost" id="nextBtn" title="Next (→)">→</button>
+          <button class="btn primary" id="doneBtn">Done</button>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <dialog id="moveDlg">
+    <form method="dialog">
+      <h3>Move files into tag folders?</h3>
+      <p id="moveText"></p>
+      <div class="dlg-actions">
+        <button class="btn ghost" value="cancel">Cancel</button>
+        <button class="btn primary" value="ok">Move files</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="tags.js" type="module"></script>
+</body>
+</html>
